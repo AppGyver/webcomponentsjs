@@ -45,6 +45,13 @@
     toggle: function(token) {
       var rv = unsafeUnwrap(this).toggle.apply(unsafeUnwrap(this), arguments);
       invalidateClass(this.ownerElement_);
+
+      enqueueMutation(this.ownerElement_, "attributes", {
+        name: "class",
+        namespace: null,
+        oldValue: "" //TODO
+      });
+
       return rv;
     },
     toString: function() {
